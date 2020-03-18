@@ -6,6 +6,17 @@ public class User {
     String email;
     String tel;
 
+    public User(String name, int id, String email, String tel) {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+        this.tel = tel;
+    }
+
+    public User (){
+
+    }
+
     public String getName() {
         return name;
     }
