@@ -66,39 +66,46 @@ public class UserDAO {
 
     public void delete(User u) throws SQLException {
         query = "DELETE FROM user where id = ?";
+        try(Connection con = Database.getConnection();
+        PreparedStatement pst =  con.prepareStatement(query)) {
+            pst.setInt(1, u.getId());
+            pst.execute();
+        }catch (SQLException ex) {
+            throw ex;
+        }
+    }
 
-        pst = con.prepareStatement(query);
-        pst.setInt(1, u.getId());
-        pst.execute();
-
+    public void update(User u) throws SQLException {
+        query = "update user set name=?, email=?, tel=? where id=?";
+        try(Connection con = Database.getConnection();
+        PreparedStatement pst =  con.prepareStatement(query)){
+            pst.setString(1, u.getName());
+            pst.setString(2, u.getEmail());
+            pst.setString(3, u.getTel());
+            pst.setInt(4, u.getId());
+            pst.execute();
+        }catch (SQLException ex) {
+            throw ex;
+        }
     }
 
     public User getUser(int id) throws SQLException {
         query = "select * from user where id = ?";
         User u = new User();
+        try(Connection con = Database.getConnection();
+            PreparedStatement pst = con.prepareStatement(query)) {
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                u.setId(rs.getInt(1));
+                u.setName(rs.getString(2));
+                u.setEmail(rs.getString(3));
+                u.setTel(rs.getString(4));
+            }
 
-        pst = con.prepareStatement(query);
-        pst.setInt(1, id);
-        ResultSet rs = pst.executeQuery();
-        if (rs.next()) {
-            u.setId(rs.getInt(1));
-            u.setName(rs.getString(2));
-            u.setEmail(rs.getString(3));
-            u.setTel(rs.getString(4));
+            return u;
+        }catch (SQLException ex) {
+            throw ex;
         }
-
-        return u;
-    }
-
-    public void update(User u) throws SQLException {
-        query = "update user set name=?, email=?, tel=? where id=?";
-
-        pst = con.prepareStatement(query);
-        pst.setString(1, u.getName());
-        pst.setString(2, u.getEmail());
-        pst.setString(3, u.getTel());
-        pst.setInt(4, u.getId());
-        pst.execute();
-
     }
 }
