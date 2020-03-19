@@ -1,22 +1,29 @@
-import db.Database;
-import db.OrderDAO;
-import db.ProductDAO;
-import db.UserDAO;
-import entity.Order;
-import entity.Product;
-import entity.User;
-import ui.Constant;
-import ui.Page;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import pages.ActionPage;
+import pages.SelectionPage;
+import pages.projects.NewProjectPage;
 
 public class Main {
     public static void main(String[] args){
+        SelectionPage mainPage = new SelectionPage("Welcome");
+
+        SelectionPage manageProjects = new SelectionPage("Manage Projects");
+        SelectionPage manageUsers = new SelectionPage("Manage Users");
+        SelectionPage manageProducts = new SelectionPage("Manage Products");
+
+        ActionPage newProject = new NewProjectPage();
+
+        manageProjects.addPage(newProject);
+
+        mainPage.addPage(manageProjects);
+        mainPage.addPage(manageUsers);
+        mainPage.addPage(manageProducts);
+
+        mainPage.run();
+
+        /*
         Page p = new Page();
         p.run();
+
+         */
     }
 }
