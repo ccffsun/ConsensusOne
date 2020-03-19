@@ -9,7 +9,7 @@ public class Database {
 
     //singleton pattern
     public static Connection getConnection() throws SQLException {
-        if(connection==null){
+        if(connection==null||connection.isClosed()){
             String url = "jdbc:mysql://localhost:3306/ConsensusOne?serverTimezone=UTC";
             String user = "root";
             String password = "ccffsun86";

@@ -5,6 +5,8 @@ import db.UserDAO;
 import entity.Order;
 import entity.Product;
 import entity.User;
+import ui.Constant;
+import ui.Page;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,13 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        OrderDAO db = new OrderDAO();
-        Order o = new Order();
-        List<Order> res = db.readAll();
-        for(Order order : res) {
-            System.out.println(order.getId() + order.getProjectId());
-        }
+    public static void main(String[] args){
+        Page p = new Page();
+        p.run();
     }
 }
