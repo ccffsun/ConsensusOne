@@ -1,6 +1,15 @@
 import pages.ActionPage;
 import pages.SelectionPage;
+import pages.products.EditProductPage;
+import pages.products.NewProductPage;
+import pages.products.ShowProductsPage;
+import pages.projects.CloseProjectPage;
 import pages.projects.NewProjectPage;
+import pages.projects.ProjectLeaseReturnPage;
+import pages.projects.ShowProjectsPage;
+import pages.settlement.SettlementPage;
+import pages.users.NewUserPage;
+import pages.users.ShowUsersPage;
 
 public class Main {
     public static void main(String[] args){
@@ -10,13 +19,22 @@ public class Main {
         SelectionPage manageUsers = new SelectionPage("Manage Users");
         SelectionPage manageProducts = new SelectionPage("Manage Products");
 
-        ActionPage newProject = new NewProjectPage();
+        manageProjects.addPage(new NewProjectPage());
+        manageProjects.addPage(new ShowProjectsPage());
+        manageProjects.addPage(new ProjectLeaseReturnPage());
+        manageProjects.addPage(new CloseProjectPage());
 
-        manageProjects.addPage(newProject);
+        manageUsers.addPage(new NewUserPage());
+        manageUsers.addPage(new ShowUsersPage());
+
+        manageProducts.addPage(new NewProductPage());
+        manageProducts.addPage(new ShowProductsPage());
+        manageProducts.addPage(new EditProductPage());
 
         mainPage.addPage(manageProjects);
         mainPage.addPage(manageUsers);
         mainPage.addPage(manageProducts);
+        mainPage.addPage(new SettlementPage());
 
         mainPage.run();
 

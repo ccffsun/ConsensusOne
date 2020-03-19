@@ -1,11 +1,13 @@
 package ui;
 
+import java.util.Scanner;
+
 public class Util {
     public static void PressEnterKeyToContinue(){
         System.out.println("Press Enter key to continue...");
         try
         {
-            System.in.read();
+            new Scanner(System.in).nextLine();
         }
         catch(Exception e)
         {}
