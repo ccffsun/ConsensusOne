@@ -7,6 +7,24 @@ public class Project {
     int userId;
     String status;
     Date startDate;
+    Date endDate;
+    String projectName;
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
     public int getId() {
         return id;

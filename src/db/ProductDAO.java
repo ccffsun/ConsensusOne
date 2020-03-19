@@ -26,6 +26,7 @@ public class ProductDAO {
                 p.setUnit(rs.getString(3));
                 p.setPrice(rs.getDouble(4));
                 p.setFirstMonthPrice(rs.getDouble(5));
+                p.setInventory(rs.getInt(6));
                 myList.add(p);
             }
         }catch (SQLException ex) {
@@ -34,8 +35,8 @@ public class ProductDAO {
         return myList;
     }
 
-    public void creat(Product p) throws SQLException {
-        query = "INSERT INTO product (id, name , unit, price, firstMonthPrice) VALUES (?,?,?,?,?)";
+    public void create(Product p) throws SQLException {
+        query = "INSERT INTO product (id, name , unit, price, firstMonthPrice, inventory) VALUES (?,?,?,?,?,?)";
 
         try(Connection con =  Database.getConnection();
         PreparedStatement pst = con.prepareStatement(query)) {
@@ -44,6 +45,7 @@ public class ProductDAO {
             pst.setString(3,p.getUnit());
             pst.setDouble(4,p.getPrice());
             pst.setDouble(5,p.getFirstMonthPrice());
+            pst.setInt(6,p.getInventory());
             pst.execute();
         }catch (SQLException ex) {
             throw ex;
@@ -51,13 +53,14 @@ public class ProductDAO {
     }
 
     public void update(Product p) throws  SQLException {
-        query = "UPDATE product SET name = ?, unit = ?, price = ?, firstMonthPrice = ?";
+        query = "UPDATE product SET name = ?, unit = ?, price = ?, firstMonthPrice = ? ,inventory = ?";
         try(Connection con = Database.getConnection();
         PreparedStatement pst = con.prepareStatement(query)) {
             pst.setString(2,p.getName());
             pst.setString(3,p.getUnit());
             pst.setDouble(4,p.getPrice());
             pst.setDouble(5,p.getFirstMonthPrice());
+            pst.setInt(6,p.getInventory());
             pst.execute();
         }catch (SQLException ex) {
             throw ex;
@@ -90,6 +93,7 @@ public class ProductDAO {
                 p.setUnit(rs.getString(3));
                 p.setPrice(rs.getDouble(4));
                 p.setFirstMonthPrice(rs.getDouble(5));
+                p.setInventory(rs.getInt(6));
             }
             return p;
         }catch (SQLException ex) {

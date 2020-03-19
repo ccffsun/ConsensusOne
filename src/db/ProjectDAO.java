@@ -22,6 +22,8 @@ public class ProjectDAO {
                 p.setUserId(rs.getInt(2));
                 p.setStatus(rs.getString(3));
                 p.setStartDate(rs.getDate(4));
+                p.setEndDate(rs.getDate(5));
+                p.setProjectName(rs.getString(6));
 
                 myList.add(p);
             }
@@ -31,8 +33,8 @@ public class ProjectDAO {
         return myList;
     }
 
-    public void creat(Project p) throws SQLException {
-        query = "INSERT INTO project (id,  userId, status, startDate) VALUES (?,?,?,?)";
+    public void create(Project p) throws SQLException {
+        query = "INSERT INTO project (id,  userId, status, startDate, endDate, projectName) VALUES (?,?,?,?,?,?)";
 
         try (Connection con = Database.getConnection();
              PreparedStatement pst = con.prepareStatement(query)) {
@@ -40,6 +42,8 @@ public class ProjectDAO {
             pst.setInt(2,p.getUserId());
             pst.setString(3,p.getStatus());
             pst.setDate(4, (Date) p.getStartDate());
+            pst.setDate(5, (Date) p.getEndDate());
+            pst.setString(6,p.getProjectName());
 
             pst.execute();
         } catch (SQLException ex) {
@@ -48,12 +52,14 @@ public class ProjectDAO {
     }
 
     public void update(Project p) throws SQLException {
-        query = "UPDATE project SET   userId = ?, status = ?, startDate = ? ";
+        query = "UPDATE project SET   userId = ?, status = ?, startDate = ? ,endDate = ?, projectName = ?";
         try (Connection con = Database.getConnection();
              PreparedStatement pst = con.prepareStatement(query)) {
             pst.setInt(2,p.getUserId());
             pst.setString(3,p.getStatus());
             pst.setDate(4, (Date) p.getStartDate());
+            pst.setDate(5, (Date) p.getEndDate());
+            pst.setString(6,p.getProjectName());
             pst.execute();
         } catch (SQLException ex) {
             throw ex;
@@ -85,6 +91,9 @@ public class ProjectDAO {
                 p.setUserId(rs.getInt(2));
                 p.setStatus(rs.getString(3));
                 p.setStartDate(rs.getDate(4));
+                p.setEndDate(rs.getDate(5));
+                p.setProjectName(rs.getString(6));
+
             }
             return p;
         } catch (SQLException ex) {

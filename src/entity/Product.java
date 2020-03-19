@@ -6,6 +6,15 @@ public class Product {
     String unit;
     double price;
     double firstMonthPrice;
+    int inventory;
+
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
+    }
 
     public int getId() {
         return id;

@@ -33,7 +33,7 @@ public class OrderDAO {
             return myList;
         }
 
-        public void creat(Order o) throws SQLException {
+        public void create(Order o) throws SQLException {
             query = "INSERT INTO order (id, productId , orderDate, type, quantity, projectId) VALUES (?,?,?,?,?,?)";
 
             try(Connection con =  Database.getConnection();
