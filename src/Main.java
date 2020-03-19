@@ -15,12 +15,9 @@ public class Main {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         ProductDAO db = new ProductDAO();
         Product p = new Product();
-        p.setId(1);
-        p.setName("");
-
-
-
-
-
+        List<Product> res = db.readAll();
+        for(Product product : res) {
+            System.out.println(product.getId() + product.getName());
+        }
     }
 }
