@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Project {
     int id;
-    int productId;
     int userId;
     String status;
     Date startDate;
@@ -17,13 +16,6 @@ public class Project {
         this.id = id;
     }
 
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
 
     public int getUserId() {
         return userId;

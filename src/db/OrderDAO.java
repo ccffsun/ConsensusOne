@@ -12,7 +12,7 @@ public class OrderDAO {
 
     public List<Order> readAll() throws SQLException {
             List<Order> myList = new ArrayList<>();
-            query = "SELECT * FROM order";
+            query = "SELECT * FROM `order`";
 
             try(Connection con = Database.getConnection();
                 PreparedStatement pst = con.prepareStatement(query)) {
@@ -34,7 +34,7 @@ public class OrderDAO {
         }
 
         public void creat(Order o) throws SQLException {
-            query = "INSERT INTO order (id, productId , orderDate, type, quantity,projectId) VALUES (?,?,?,?,?,?)";
+            query = "INSERT INTO order (id, productId , orderDate, type, quantity, projectId) VALUES (?,?,?,?,?,?)";
 
             try(Connection con =  Database.getConnection();
                 PreparedStatement pst = con.prepareStatement(query)) {

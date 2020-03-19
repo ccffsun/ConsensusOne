@@ -1,6 +1,8 @@
 import db.Database;
+import db.OrderDAO;
 import db.ProductDAO;
 import db.UserDAO;
+import entity.Order;
 import entity.Product;
 import entity.User;
 
@@ -13,11 +15,11 @@ import java.util.logging.Logger;
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        ProductDAO db = new ProductDAO();
-        Product p = new Product();
-        List<Product> res = db.readAll();
-        for(Product product : res) {
-            System.out.println(product.getId() + product.getName());
+        OrderDAO db = new OrderDAO();
+        Order o = new Order();
+        List<Order> res = db.readAll();
+        for(Order order : res) {
+            System.out.println(order.getId() + order.getProjectId());
         }
     }
 }
