@@ -10,12 +10,13 @@ import pages.projects.ShowProjectsPage;
 import pages.settlement.SettlementPage;
 import pages.users.NewUserPage;
 import pages.users.ShowUsersPage;
+import ui.Constant;
 
 public class Main {
     public static void main(String[] args){
-        SelectionPage mainPage = new SelectionPage("Welcome");
+        SelectionPage mainPage = new SelectionPage(Constant.Welcome);
 
-        SelectionPage manageProjects = new SelectionPage("Manage Projects");
+        SelectionPage manageProjects = new SelectionPage(Constant.ManageProjects);
         SelectionPage manageUsers = new SelectionPage("Manage Users");
         SelectionPage manageProducts = new SelectionPage("Manage Products");
 

@@ -1,6 +1,6 @@
 package pages;
 
-import ui.Util;
+import java.util.Scanner;
 
 public abstract class ActionPage extends Page{
     public ActionPage() {
@@ -10,6 +10,16 @@ public abstract class ActionPage extends Page{
     @Override
     public void run() {
         super.run();
-        Util.PressEnterKeyToContinue();
+        pressEnterKeyToContinue();
+    }
+
+    private void pressEnterKeyToContinue(){
+        System.out.println("Press Enter key to continue...");
+        try
+        {
+            new Scanner(System.in).nextLine();
+        }
+        catch(Exception e)
+        {}
     }
 }
