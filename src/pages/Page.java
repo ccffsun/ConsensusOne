@@ -2,6 +2,7 @@ package pages;
 
 import ui.Constant;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public abstract class Page {
@@ -30,7 +31,7 @@ public abstract class Page {
         System.out.println(Constant.DoubleLine);
     }
 
-    public void run(){
+    public void run() {
         while (true){
             showHeader();
             if(runPage()){
@@ -38,6 +39,7 @@ public abstract class Page {
             }
         }
     }
+
 
     protected abstract boolean runPage();
 }
