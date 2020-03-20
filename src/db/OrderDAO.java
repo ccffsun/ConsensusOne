@@ -34,16 +34,15 @@ public class OrderDAO {
         }
 
         public void create(Order o) throws SQLException {
-            query = "INSERT INTO order (id, productId , orderDate, type, quantity, projectId) VALUES (?,?,?,?,?,?)";
+            query = "INSERT INTO `order` (productId , orderDate, type, quantity, projectId) VALUES (?,?,?,?,?)";
 
             try(Connection con =  Database.getConnection();
                 PreparedStatement pst = con.prepareStatement(query)) {
-                pst.setInt(1,o.getId());
-                pst.setInt(2,o.getProductId());
-                pst.setDate(3, (Date) o.getDate());
-                pst.setInt(4,o.getType());
-                pst.setInt(5,o.getQuantity());
-                pst.setInt(6,o.getProjectId());
+                pst.setInt(1,o.getProductId());
+                pst.setDate(2, (Date) o.getDate());
+                pst.setInt(3,o.getType());
+                pst.setInt(4,o.getQuantity());
+                pst.setInt(5,o.getProjectId());
                 pst.execute();
             }catch (SQLException ex) {
                 throw ex;
@@ -51,14 +50,15 @@ public class OrderDAO {
         }
 
         public void update(Order o) throws  SQLException {
-            query = "UPDATE order SET  productId= ?, orderDate = ?, type = ?, quantity= ? ,projectId=?";
+            query = "UPDATE order SET  productId= ?, orderDate = ?, type = ?, quantity= ? ,projectId=? Where orderId = ?";
             try(Connection con = Database.getConnection();
                 PreparedStatement pst = con.prepareStatement(query)) {
-                pst.setInt(2,o.getProductId());
-                pst.setDate(3, (Date) o.getDate());
-                pst.setInt(4,o.getType());
-                pst.setInt(5,o.getQuantity());
-                pst.setInt(6,o.getProjectId());
+                pst.setInt(1,o.getProductId());
+                pst.setDate(2, (Date) o.getDate());
+                pst.setInt(3,o.getType());
+                pst.setInt(4,o.getQuantity());
+                pst.setInt(5,o.getProjectId());
+                pst.setInt(6,o.getId());
                 pst.execute();
             }catch (SQLException ex) {
                 throw ex;
