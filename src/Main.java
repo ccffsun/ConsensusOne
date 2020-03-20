@@ -8,6 +8,7 @@ import pages.projects.NewProjectPage;
 import pages.projects.ProjectLeaseReturnPage;
 import pages.projects.ShowProjectsPage;
 import pages.settlement.SettlementPage;
+import pages.users.EditUserPage;
 import pages.users.NewUserPage;
 import pages.users.ShowUsersPage;
 import ui.Constant;
@@ -27,6 +28,7 @@ public class Main {
 
         manageUsers.addPage(new NewUserPage());
         manageUsers.addPage(new ShowUsersPage());
+        manageUsers.addPage(new EditUserPage());
 
         manageProducts.addPage(new NewProductPage());
         manageProducts.addPage(new ShowProductsPage());
