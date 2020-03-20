@@ -52,14 +52,15 @@ public class ProjectDAO {
     }
 
     public void update(Project p) throws SQLException {
-        query = "UPDATE project SET   userId = ?, status = ?, startDate = ? ,endDate = ?, projectName = ?";
+        query = "UPDATE project SET   userId = ?, status = ?, startDate = ? ,endDate = ?, projectName = ? WHERE id = ?";
         try (Connection con = Database.getConnection();
              PreparedStatement pst = con.prepareStatement(query)) {
-            pst.setInt(2,p.getUserId());
-            pst.setString(3,p.getStatus());
-            pst.setDate(4, (Date) p.getStartDate());
-            pst.setDate(5, (Date) p.getEndDate());
-            pst.setString(6,p.getProjectName());
+            pst.setInt(1,p.getUserId());
+            pst.setString(2,p.getStatus());
+            pst.setDate(3, (Date) p.getStartDate());
+            pst.setDate(4, (Date) p.getEndDate());
+            pst.setString(5,p.getProjectName());
+            pst.setInt(6, p.getId());
             pst.execute();
         } catch (SQLException ex) {
             throw ex;
@@ -81,12 +82,13 @@ public class ProjectDAO {
 
     public Project getProject(int id) throws SQLException {
         query = "SELECT * FROM project where id = ?";
-        Project p = new Project();
+        Project p = null;
         try (Connection con = Database.getConnection();
              PreparedStatement pst = con.prepareStatement(query)) {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
+                p = new Project();
                 p.setId(rs.getInt(1));
                 p.setUserId(rs.getInt(2));
                 p.setStatus(rs.getString(3));

@@ -91,12 +91,13 @@ public class UserDAO {
 
     public User getUser(int id) throws SQLException {
         query = "select * from user where id = ?";
-        User u = new User();
+        User u = null;
         try(Connection con = Database.getConnection();
             PreparedStatement pst = con.prepareStatement(query)) {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
+                u = new User();
                 u.setId(rs.getInt(1));
                 u.setName(rs.getString(2));
                 u.setEmail(rs.getString(3));

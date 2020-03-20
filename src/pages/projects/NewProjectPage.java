@@ -1,9 +1,12 @@
 package pages.projects;
 
+import com.mysql.cj.result.SqlDateValueFactory;
+import db.ProjectDAO;
 import db.UserDAO;
 import entity.Project;
 import entity.User;
 import pages.ActionPage;
+import pages.helper.Common;
 import ui.Constant;
 
 import java.sql.Date;
@@ -20,23 +23,37 @@ public class NewProjectPage extends ActionPage {
     protected boolean runPage() {
         Project p = new Project();
 
-        System.out.println("Project Name:");
-        String input = scanner.nextLine();
-        p.setProjectName(input);
+        try {
+            System.out.println("Project Name:");
+            String input = scanner.nextLine();
+            p.setProjectName(input);
 
-        System.out.println("User ID:");
-        showUserData();
-        input = scanner.nextLine();
-        p.setUserId(Integer.valueOf(input));
+            System.out.println("User ID:");
+            showUserData();
+            input = scanner.nextLine();
+            p.setUserId(Integer.valueOf(input));
 
-        System.out.println("Create Date:");
-        input = scanner.nextLine();
-        p.setStartDate(Date.valueOf(input));
+            UserDAO ud = new UserDAO();
+            User u = ud.getUser(p.getUserId());
+            if (u == null) {
+                System.out.println("User not exist!!!!!!!");
+                return true;
+            }
 
-        System.out.println("Confirm? y/n");
-        input = scanner.nextLine();
-        if (input.toLowerCase().equals("y")) {
-            System.out.println("Successfully Added new user!");
+            System.out.println("Create Date:");
+            input = scanner.nextLine();
+            p.setStartDate(Date.valueOf(input));
+
+            p.setStatus("active");
+
+            if (Common.Confirm()) {
+                ProjectDAO pd = new ProjectDAO();
+                pd.create(p);
+                System.out.println("Successfully Added new project!");
+            }
+        }catch (Exception ex){
+            System.out.println("Failed!!!!!!!");
+            ex.printStackTrace();
         }
 
         return true;
