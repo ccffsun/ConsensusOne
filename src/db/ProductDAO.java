@@ -53,14 +53,15 @@ public class ProductDAO {
     }
 
     public void update(Product p) throws  SQLException {
-        query = "UPDATE product SET name = ?, unit = ?, price = ?, firstMonthPrice = ? ,inventory = ?";
+        query = "UPDATE product SET name = ?, unit = ?, price = ?, firstMonthPrice = ? ,inventory = ? WHERE id = ?";
         try(Connection con = Database.getConnection();
         PreparedStatement pst = con.prepareStatement(query)) {
-            pst.setString(2,p.getName());
-            pst.setString(3,p.getUnit());
-            pst.setDouble(4,p.getPrice());
-            pst.setDouble(5,p.getFirstMonthPrice());
-            pst.setInt(6,p.getInventory());
+            pst.setString(1,p.getName());
+            pst.setString(2,p.getUnit());
+            pst.setDouble(3,p.getPrice());
+            pst.setDouble(4,p.getFirstMonthPrice());
+            pst.setInt(5,p.getInventory());
+            pst.setInt(6, p.getId());
             pst.execute();
         }catch (SQLException ex) {
             throw ex;
