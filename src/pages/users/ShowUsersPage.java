@@ -1,11 +1,10 @@
 package pages.users;
 
-import db.ProjectDAO;
 import db.UserDAO;
 import dnl.utils.text.table.TextTable;
-import entity.Project;
 import entity.User;
 import pages.ActionPage;
+import pages.helper.Common;
 import ui.Constant;
 
 import java.sql.SQLException;
@@ -41,7 +40,9 @@ public class ShowUsersPage  extends ActionPage {
             i++;
         }
         TextTable tt = new TextTable(column, data);
+        Common.PrintCurrentDateTime();
         tt.printTable();
         System.out.println(Constant.SingleLine);
     }
 }
+

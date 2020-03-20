@@ -27,7 +27,7 @@ public class CloseProjectPage  extends ActionPage {
             System.out.println("Close Date:");
             input = scanner.nextLine();
             project.setEndDate(Date.valueOf(input));
-            if(Common.Confirm()){
+            if(Common.Confirm(scanner)){
                 project.setStatus("closed");
                 pd.update(project);
             }

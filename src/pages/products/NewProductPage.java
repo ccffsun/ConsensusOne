@@ -44,7 +44,7 @@ public class NewProductPage extends ActionPage {
 
 
 
-            if (Common.Confirm()) {
+            if (Common.Confirm(scanner)) {
                 ProductDAO pd = new ProductDAO();
                 pd.create(p);
                 System.out.println("Successfully Added new product!");

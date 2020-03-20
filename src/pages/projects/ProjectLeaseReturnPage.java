@@ -37,7 +37,7 @@ public class ProjectLeaseReturnPage  extends ActionPage {
             input = scanner.nextLine();
             order.setQuantity(Integer.valueOf(input));
 
-            if (Common.Confirm()) {
+            if (Common.Confirm(scanner)) {
                 OrderDAO od = new OrderDAO();
                 od.create(order);
                 System.out.println("Successfully Added new Lease/Return!");

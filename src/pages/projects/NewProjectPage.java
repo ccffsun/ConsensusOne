@@ -46,7 +46,7 @@ public class NewProjectPage extends ActionPage {
 
             p.setStatus("active");
 
-            if (Common.Confirm()) {
+            if (Common.Confirm(scanner)) {
                 ProjectDAO pd = new ProjectDAO();
                 pd.create(p);
                 System.out.println("Successfully Added new project!");

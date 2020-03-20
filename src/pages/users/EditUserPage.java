@@ -23,6 +23,10 @@ public class EditUserPage extends ActionPage {
             System.out.println("User Id:");
             String input = scanner.nextLine();
             User user = ud.getUser(Integer.valueOf(input));
+            if(user == null) {
+                System.out.println("User does not exist!!!");
+                return true;
+            }
             System.out.println("Edit:\n1. Name\n2. Email\n3. Tel\n4. Back");
             input = scanner.nextLine();
             switch (input) {
@@ -48,7 +52,7 @@ public class EditUserPage extends ActionPage {
                     break;
 
             }
-        }catch (SQLException ex) {
+        }catch (Exception ex) {
             ex.printStackTrace();
         }
 

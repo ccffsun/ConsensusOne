@@ -6,6 +6,7 @@ import dnl.utils.text.table.TextTable;
 import entity.Product;
 import entity.User;
 import pages.ActionPage;
+import pages.helper.Common;
 import ui.Constant;
 
 import java.sql.SQLException;
@@ -43,6 +44,7 @@ public class ShowProductsPage  extends ActionPage {
             i++;
         }
         TextTable tt = new TextTable(column, data);
+        Common.PrintCurrentDateTime();
         tt.printTable();
         System.out.println(Constant.SingleLine);
     }

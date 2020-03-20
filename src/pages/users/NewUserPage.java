@@ -32,7 +32,7 @@ public class NewUserPage  extends ActionPage {
             input = scanner.nextLine();
             u.setTel(input);
 
-            if (Common.Confirm()) {
+            if (Common.Confirm(scanner)) {
                 UserDAO ud = new UserDAO();
                 ud.create(u);
                 System.out.println("Successfully Added new user!");
