@@ -75,6 +75,7 @@ public class SettlementPage extends ActionPage {
             } else {
                 if (!orderQueueMap.containsKey(o.getProductId())) {
                     System.out.println("Return product " + o.getProductId() + " not exist!!!");
+                    return false;
                 }
                 Queue<Order> leaseQueue = orderQueueMap.get(o.getProductId());
                 int returnAmount = o.getQuantity();
@@ -91,7 +92,7 @@ public class SettlementPage extends ActionPage {
                         returnAmount = 0;
                     }
                     //Calculate money
-                    calculateRent(leaseOrder, amoutToCalculate, o.getDate(), priceMap);
+                    calculateRent(leaseOrder, amoutToCalculate, o.getDate(), priceMap,false);
                 }
             }
         }
@@ -100,7 +101,7 @@ public class SettlementPage extends ActionPage {
         return true;
     }
 
-    private boolean calculateRent(Order leaseOrder, int quantity, Date endDate, HashMap<Integer, Double[]> priceMap) throws SQLException {
+    private boolean calculateRent(Order leaseOrder, int quantity, Date endDate, HashMap<Integer, Double[]> priceMap, boolean isLeftOver) throws SQLException {
         int days = Common.DaysBetween(leaseOrder.getDate(), endDate);
         double firstMonPrice;
         double unitPrice;
@@ -111,6 +112,9 @@ public class SettlementPage extends ActionPage {
         unitPrice = priceMap.get(leaseOrder.getProductId())[1];
         double rent = (firstMonPrice + Math.max(0, days - 30) * unitPrice) * quantity;
         Object[] row = new Object[]{leaseOrder.getProductId(), days, quantity, firstMonPrice, unitPrice, rent};
+        if(isLeftOver){
+            markLeftOverRecord(row);
+        }
         totalRent += rent;
         tableRows.add(row);
         return true;
@@ -122,13 +126,17 @@ public class SettlementPage extends ActionPage {
                 Queue<Order> q = entry.getValue();
                 while (!q.isEmpty()) {
                     Order o = q.poll();
-                    if (!calculateRent(o, o.getQuantity(), endDate, priceMap)) {
+                    if (!calculateRent(o, o.getQuantity(), endDate, priceMap, true)) {
                         return false;
                     }
                 }
             }
         }
         return true;
+    }
+
+    private void markLeftOverRecord(Object[] row){
+        row[0] = "*"+row[0];
     }
 
     private boolean validatePriceMap(Order o, HashMap<Integer, Double[]> priceMap) throws SQLException {
