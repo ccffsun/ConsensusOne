@@ -40,11 +40,5 @@ public class Main {
         mainPage.addPage(new SettlementPage());
 
         mainPage.run();
-
-        /*
-        Page p = new Page();
-        p.run();
-
-         */
     }
 }

@@ -1,5 +1,7 @@
 package pages;
 
+import ui.Constant;
+
 import java.util.Scanner;
 
 public abstract class ActionPage extends Page{
@@ -14,10 +16,10 @@ public abstract class ActionPage extends Page{
     }
 
     private void pressEnterKeyToContinue(){
-        System.out.println("Press Enter key to continue...");
+        System.out.println(Constant.ANSI_YELLOW+"Press Enter key to continue..."+Constant.ANSI_RESET);
         try
         {
-            new Scanner(System.in).nextLine();
+            scanner.nextLine();
         }
         catch(Exception e)
         {}

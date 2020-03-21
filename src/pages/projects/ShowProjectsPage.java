@@ -7,7 +7,6 @@ import pages.ActionPage;
 import pages.helper.Common;
 import ui.Constant;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

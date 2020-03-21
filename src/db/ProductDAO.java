@@ -83,12 +83,13 @@ public class ProductDAO {
 
     public Product getProduct(int id) throws SQLException {
         query = "SELECT * FROM product where id = ?";
-        Product p = new Product();
+        Product p = null;
         try (Connection con =  Database.getConnection();
         PreparedStatement pst = con.prepareStatement(query)) {
             pst.setInt(1,id);
             ResultSet rs = pst.executeQuery();
             if(rs.next()) {
+                p = new Product();
                 p.setId(rs.getInt(1));
                 p.setName(rs.getString(2));
                 p.setUnit(rs.getString(3));

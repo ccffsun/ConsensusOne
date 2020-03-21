@@ -1,5 +1,6 @@
 package pages;
 
+import pages.helper.Common;
 import ui.Constant;
 
 import java.sql.SQLException;
@@ -26,9 +27,9 @@ public abstract class Page {
     }
 
     private void showHeader(){
-        System.out.println(Constant.DoubleLine);
-        System.out.println(pageName);
-        System.out.println(Constant.DoubleLine);
+        System.out.println(Constant.ANSI_CYAN+Constant.DoubleLine+Constant.ANSI_RESET);
+        System.out.println(Constant.ANSI_BLUE+pageName+Constant.ANSI_RESET);
+        System.out.println(Constant.ANSI_CYAN+Constant.DoubleLine+Constant.ANSI_RESET);
     }
 
     public void run() {

@@ -1,5 +1,7 @@
 package pages;
 
+import ui.Constant;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +21,10 @@ public class SelectionPage extends Page {
     protected boolean runPage() {
         int i = 1;
         for(Page p : subPages){
-            System.out.println(i+". "+p.getPageName());
+            System.out.println(Constant.ANSI_RED+i+Constant.ANSI_RESET+". "+p.getPageName());
             i++;
         }
-        System.out.println(i+". Back");
+        System.out.println(Constant.ANSI_RED+i+Constant.ANSI_RESET+". Back");
         String input = scanner.nextLine();
         int id = 0;
         try {
@@ -31,6 +33,8 @@ public class SelectionPage extends Page {
         }catch (Exception e){
             if(id == subPages.size()+1){
                 return true;
+            }else {
+                e.printStackTrace();
             }
         }
         return false;

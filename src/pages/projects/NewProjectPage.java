@@ -1,6 +1,5 @@
 package pages.projects;
 
-import com.mysql.cj.result.SqlDateValueFactory;
 import db.ProjectDAO;
 import db.UserDAO;
 import entity.Project;

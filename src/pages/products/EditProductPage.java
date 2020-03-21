@@ -29,6 +29,10 @@ public class EditProductPage extends ActionPage {
                     System.out.println("Product Id:");
                     input = scanner.nextLine();
                     product = pd.getProduct(Integer.valueOf(input));
+                    if(product==null){
+                        System.out.println("Product does not exist!!!");
+                        return true;
+                    }
                     System.out.println("Addition Quantity:");
                     input = scanner.nextLine();
                     additionInventory(Integer.valueOf(input));
@@ -37,6 +41,10 @@ public class EditProductPage extends ActionPage {
                     System.out.println("Product Id:");
                     input = scanner.nextLine();
                     product = pd.getProduct(Integer.valueOf(input));
+                    if(product==null){
+                        System.out.println("Product does not exist!!!");
+                        return true;
+                    }
                     System.out.println("Deduction Quantity:");
                     input = scanner.nextLine();
                     deductionInventory(Integer.valueOf(input));
