@@ -38,7 +38,7 @@ public class Order {
         return  projectId;
     }
 
-    public void setProjectId(int productId) {
+    public void setProjectId(int projectId) {
         this.projectId = projectId;
     }
 

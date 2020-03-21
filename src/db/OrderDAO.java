@@ -18,14 +18,7 @@ public class OrderDAO {
                 PreparedStatement pst = con.prepareStatement(query)) {
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
-                    Order o = new Order();
-                    o.setId (rs.getInt(1));
-                    o.setProductId(rs.getInt(2));
-                    o.setDate(rs.getDate(3));
-                    o.setType(rs.getInt(4));
-                    o.setQuantity(rs.getInt(5));
-                    o.setProjectId(rs.getInt(6));
-                    myList.add(o);
+                    myList.add(resultSetToOrder(rs));
                 }
             }catch (SQLException ex) {
                 throw ex;
@@ -80,23 +73,45 @@ public class OrderDAO {
 
         public Order getOrder(int id) throws SQLException {
             query = "SELECT * FROM order where id = ?";
-            Order o = new Order();
+            Order o = null;
             try (Connection con =  Database.getConnection();
                  PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setInt(1,id);
                 ResultSet rs = pst.executeQuery();
                 if(rs.next()) {
-                    o.setId(rs.getInt(1));
-                    o.setProductId(rs.getInt(2));
-                    o.setDate(rs.getDate(3));
-                    o.setType(rs.getInt(4));
-                    o.setQuantity(rs.getInt(5));
-                    o.setProjectId(rs.getInt(6));
+                    o = resultSetToOrder(rs);
                 }
                 return o;
             }catch (SQLException ex) {
                 throw ex;
             }
+    }
+
+    public List<Order> getOrdersByProjectId(int projectId) throws SQLException {
+        query = "SELECT * FROM `order` where projectId = ? order by orderDate asc";
+        List<Order> orders = new ArrayList<>();
+        try (Connection con =  Database.getConnection();
+             PreparedStatement pst = con.prepareStatement(query)) {
+            pst.setInt(1,projectId);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                orders.add(resultSetToOrder(rs));
+            }
+            return orders;
+        }catch (SQLException ex) {
+            throw ex;
+        }
+    }
+
+    private Order resultSetToOrder(ResultSet rs) throws SQLException {
+        Order o = new Order();
+        o.setId(rs.getInt(1));
+        o.setProductId(rs.getInt(2));
+        o.setDate(rs.getDate(3));
+        o.setType(rs.getInt(4));
+        o.setQuantity(rs.getInt(5));
+        o.setProjectId(rs.getInt(6));
+        return o;
     }
 }
 

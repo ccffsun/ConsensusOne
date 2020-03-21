@@ -3,10 +3,7 @@ import pages.SelectionPage;
 import pages.products.EditProductPage;
 import pages.products.NewProductPage;
 import pages.products.ShowProductsPage;
-import pages.projects.CloseProjectPage;
-import pages.projects.NewProjectPage;
-import pages.projects.ProjectLeaseReturnPage;
-import pages.projects.ShowProjectsPage;
+import pages.projects.*;
 import pages.settlement.SettlementPage;
 import pages.users.EditUserPage;
 import pages.users.NewUserPage;
@@ -25,6 +22,7 @@ public class Main {
         manageProjects.addPage(new ShowProjectsPage());
         manageProjects.addPage(new ProjectLeaseReturnPage());
         manageProjects.addPage(new CloseProjectPage());
+        manageProjects.addPage(new ProjectDetails());
 
         manageUsers.addPage(new NewUserPage());
         manageUsers.addPage(new ShowUsersPage());
