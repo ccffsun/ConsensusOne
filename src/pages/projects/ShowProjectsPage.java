@@ -54,17 +54,17 @@ public class ShowProjectsPage extends ActionPage {
 
     private void listProjects(List<Project> projects) {
             String[] column = new String[]{"Id", "Project Name", "User Id", "Status", "Start Date", "End Date"};
-            Object[][] data = new Object[projects.size()][column.length];
-            int i = 0;
-            for (Project p : projects) {
-                data[i][0] = p.getId();
-                data[i][1] = p.getProjectName();
-                data[i][2] = p.getUserId();
-                data[i][3] = p.getStatus();
-                data[i][4] = p.getStartDate();
-                data[i][5] = p.getEndDate();
-                i++;
-            }
+        Object[][] data = new Object[projects.size()][column.length];
+        int i = 0;
+        for (Project p : projects) {
+            data[i][0] = p.getId();
+            data[i][1] = p.getProjectName();
+            data[i][2] = p.getUserId();
+            data[i][3] = p.getStatus();
+            data[i][4] = p.getStartDate();
+            data[i][5] = p.getEndDate();
+            i++;
+        }
         TextTable tt = new TextTable(column, data);
         Common.PrintCurrentDateTime();
         tt.printTable();

@@ -15,8 +15,8 @@ public class Main {
         SelectionPage mainPage = new SelectionPage(Constant.Welcome);
 
         SelectionPage manageProjects = new SelectionPage(Constant.ManageProjects);
-        SelectionPage manageUsers = new SelectionPage("Manage Users");
-        SelectionPage manageProducts = new SelectionPage("Manage Products");
+        SelectionPage manageUsers = new SelectionPage(Constant.ManageUsers);
+        SelectionPage manageProducts = new SelectionPage(Constant.ManageProducts);
 
         manageProjects.addPage(new NewProjectPage());
         manageProjects.addPage(new ShowProjectsPage());

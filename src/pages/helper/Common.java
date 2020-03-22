@@ -26,6 +26,9 @@ public class Common {
     public static final int LEASE = 1;
     public static final int RETURN =2;
 
+    public static final String CLOSED = "closed";
+    public static final String ACTIVE = "active";
+
     public static LocalDate convertToLocalDate(Date dateToConvert) {
         return Instant.ofEpochMilli(dateToConvert.getTime())
                 .atZone(ZoneId.systemDefault())

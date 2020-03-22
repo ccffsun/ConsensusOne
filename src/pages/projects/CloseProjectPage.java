@@ -3,7 +3,6 @@ package pages.projects;
 import db.ProjectBookkeepingDAO;
 import db.ProjectDAO;
 import dnl.utils.text.table.TextTable;
-import entity.Order;
 import entity.Project;
 import entity.ProjectBookkeeping;
 import pages.ActionPage;
@@ -31,17 +30,19 @@ public class CloseProjectPage  extends ActionPage {
                 System.out.println("Project not exist!!!!!!");
                 return true;
             }
+            if(project.getStatus().equals(Common.CLOSED)) {
+                System.out.println("Project already closed!!!");
+                return true;
+            }
             System.out.println("Close Date:");
             input = scanner.nextLine();
             project.setEndDate(Date.valueOf(input));
 
             showBookKeeping(pid);
-
+            System.out.println("If you need return product please go to the Project Lease/Return page. Sure to close this project? ");
             if(Common.Confirm(scanner)){
-                project.setStatus("closed");
+                project.setStatus(Common.CLOSED);
                 pd.update(project);
-            }else {
-                //new ProjectLeaseReturnPage().run();
             }
 
         }catch (Exception ex){

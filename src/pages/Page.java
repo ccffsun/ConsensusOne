@@ -1,9 +1,6 @@
 package pages;
 
-import pages.helper.Common;
 import ui.Constant;
-
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public abstract class Page {
