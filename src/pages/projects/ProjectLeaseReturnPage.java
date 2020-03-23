@@ -10,6 +10,7 @@ import entity.Project;
 import entity.ProjectBookkeeping;
 import pages.ActionPage;
 import pages.helper.Common;
+import ui.Constant;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class ProjectLeaseReturnPage extends ActionPage {
 
     public ProjectLeaseReturnPage() {
         super();
-        setPageName("Project Lease/Return");
+        setPageName(Constant.ProjectLeaseAndReturn);
     }
 
     @Override
@@ -38,23 +39,23 @@ public class ProjectLeaseReturnPage extends ActionPage {
         int quantity;
 
         try {
-            System.out.println("Project Id:");
+            System.out.println(Constant.ProjectId);
             String input = scanner.nextLine();
             projectId = Integer.valueOf(input);
             Project project = projectDAO.getProject(projectId);
             if (project == null) {
-                System.out.println("Project does not exist!!!");
+                System.out.println(Constant.ProjectNotExist);
                 return true;
             }
             order.setProjectId(projectId);
 
 
-            System.out.println("Product Id:");
+            System.out.println(Constant.ProductId);
             input = scanner.nextLine();
             productId = Integer.valueOf(input);
             Product product = productDAO.getProduct(productId);
             if (product == null) {
-                System.out.println("Product does not exist!!!");
+                System.out.println(Constant.ProductNotExist);
                 return true;
             }
             order.setProductId(productId);
@@ -73,7 +74,7 @@ public class ProjectLeaseReturnPage extends ActionPage {
             order.setQuantity(quantity);
 
             if(updateTables(order, project, product)){
-                System.out.println("Successfully Added new Leased/Return!");
+                System.out.println(Constant.Succeeded);
             }
 
         } catch (SQLException ex) {

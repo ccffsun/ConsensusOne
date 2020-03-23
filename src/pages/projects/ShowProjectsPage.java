@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ShowProjectsPage extends ActionPage {
     public ShowProjectsPage() {
         super();
-        setPageName("Show Projects");
+        setPageName(Constant.ShowProjects);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ShowProjectsPage extends ActionPage {
     }
 
     private void listClosedProjects(List<Project> projects) {
-        List<Project> activeProject = projects.stream().filter(p -> (p.getStatus().equals("closed"))).collect(Collectors.toList());
+        List<Project> activeProject = projects.stream().filter(p -> (p.getStatus().equals(Constant.CLOSED))).collect(Collectors.toList());
         listProjects(activeProject);
     }
 

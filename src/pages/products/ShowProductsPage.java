@@ -15,7 +15,7 @@ import java.util.List;
 public class ShowProductsPage  extends ActionPage {
     public ShowProductsPage(){
         super();
-        setPageName("Show Products");
+        setPageName(Constant.ShowProducts);
     }
 
     @Override

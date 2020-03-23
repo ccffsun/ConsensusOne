@@ -1,20 +1,16 @@
 package pages.products;
 
 import db.ProductDAO;
-import db.ProjectDAO;
-import db.UserDAO;
 import entity.Product;
-import entity.Project;
-import entity.User;
 import pages.ActionPage;
 import pages.helper.Common;
+import ui.Constant;
 
-import java.sql.Date;
 
 public class NewProductPage extends ActionPage {
     public NewProductPage(){
         super();
-        setPageName("New Product");
+        setPageName(Constant.NewProduct);
     }
 
     @Override
@@ -22,23 +18,23 @@ public class NewProductPage extends ActionPage {
         Product p = new Product();
 
         try {
-            System.out.println("Product Name:");
+            System.out.println(Constant.ProductName);
             String input = scanner.nextLine();
             p.setName(input);
 
-            System.out.println("Product Unit:");
+            System.out.println(Constant.ProductUnit);
             input = scanner.nextLine();
             p.setUnit(input);
 
-            System.out.println("Product Price:");
+            System.out.println(Constant.ProductPrice);
             input = scanner.nextLine();
             p.setPrice(Double.valueOf(input));
 
-            System.out.println("First Month Price");
+            System.out.println(Constant.FirstMonthPrice);
             input = scanner.nextLine();
             p.setFirstMonthPrice(Double.valueOf(input));
 
-            System.out.println("Inventory");
+            System.out.println(Constant.Inventory);
             input = scanner.nextLine();
             p.setInventory(Integer.valueOf(input));
 
@@ -47,10 +43,10 @@ public class NewProductPage extends ActionPage {
             if (Common.Confirm(scanner)) {
                 ProductDAO pd = new ProductDAO();
                 pd.create(p);
-                System.out.println("Successfully Added new product!");
+                System.out.println(Constant.Succeeded);
             }
         }catch (Exception ex){
-            System.out.println("Failed!!!!!!!");
+            System.out.println(Constant.Failed);
             ex.printStackTrace();
         }
 

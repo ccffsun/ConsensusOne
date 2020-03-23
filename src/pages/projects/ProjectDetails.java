@@ -12,13 +12,13 @@ import java.util.List;
 public class ProjectDetails extends ActionPage {
     public ProjectDetails(){
         super();
-        setPageName("Project Details");
+        setPageName(Constant.ProjectDetails);
     }
 
     @Override
     protected boolean runPage() {
         try {
-            System.out.println("Project Id:");
+            System.out.println(Constant.ProjectId);
             int projectId = Integer.valueOf(scanner.nextLine());
             OrderDAO orderDAO = new OrderDAO();
             List<Order> orders = orderDAO.getOrdersByProjectId(projectId);

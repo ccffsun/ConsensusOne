@@ -15,7 +15,7 @@ import java.util.List;
 public class NewProjectPage extends ActionPage {
     public NewProjectPage() {
         super();
-        setPageName("New Project");
+        setPageName(Constant.NewProject);
     }
 
     @Override
@@ -23,11 +23,11 @@ public class NewProjectPage extends ActionPage {
         Project p = new Project();
 
         try {
-            System.out.println("Project Name:");
+            System.out.println(Constant.ProjectName);
             String input = scanner.nextLine();
             p.setProjectName(input);
 
-            System.out.println("User ID:");
+            System.out.println(Constant.UserId);
             showUserData();
             input = scanner.nextLine();
             p.setUserId(Integer.valueOf(input));
@@ -35,7 +35,7 @@ public class NewProjectPage extends ActionPage {
             UserDAO ud = new UserDAO();
             User u = ud.getUser(p.getUserId());
             if (u == null) {
-                System.out.println("User not exist!!!!!!!");
+                System.out.println(Constant.UserNotExist);
                 return true;
             }
 
@@ -43,15 +43,15 @@ public class NewProjectPage extends ActionPage {
             input = scanner.nextLine();
             p.setStartDate(Date.valueOf(input));
 
-            p.setStatus("active");
+            p.setStatus(Constant.ACTIVE);
 
             if (Common.Confirm(scanner)) {
                 ProjectDAO pd = new ProjectDAO();
                 pd.create(p);
-                System.out.println("Successfully Added new project!");
+                System.out.println(Constant.Succeeded);
             }
         }catch (Exception ex){
-            System.out.println("Failed!!!!!!!");
+            System.out.println(Constant.Failed);
             ex.printStackTrace();
         }
 

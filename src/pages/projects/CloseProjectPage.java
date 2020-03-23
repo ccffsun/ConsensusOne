@@ -16,21 +16,21 @@ import java.util.List;
 public class CloseProjectPage  extends ActionPage {
     public CloseProjectPage(){
         super();
-        setPageName("Close Project");
+        setPageName(Constant.CloseProject);
     }
     @Override
     protected boolean runPage() {
         try {
-            System.out.println("Project Id:");
+            System.out.println(Constant.ProjectId);
             String input = scanner.nextLine();
             int pid = Integer.valueOf(input);
             ProjectDAO pd = new ProjectDAO();
             Project project = pd.getProject(pid);
             if(project == null){
-                System.out.println("Project not exist!!!!!!");
+                System.out.println(Constant.ProjectNotExist);
                 return true;
             }
-            if(project.getStatus().equals(Common.CLOSED)) {
+            if(project.getStatus().equals(Constant.CLOSED)) {
                 System.out.println("Project already closed!!!");
                 return true;
             }
@@ -41,12 +41,12 @@ public class CloseProjectPage  extends ActionPage {
             showBookKeeping(pid);
             System.out.println("If you need return product please go to the Project Lease/Return page. Sure to close this project? ");
             if(Common.Confirm(scanner)){
-                project.setStatus(Common.CLOSED);
+                project.setStatus(Constant.CLOSED);
                 pd.update(project);
             }
 
         }catch (Exception ex){
-            System.out.println("Failed!!!!!");
+            System.out.println(Constant.Failed);
             ex.printStackTrace();
         }
         return true;

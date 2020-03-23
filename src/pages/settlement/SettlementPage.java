@@ -33,20 +33,20 @@ public class SettlementPage extends ActionPage {
         productDAO = new ProductDAO();
 
         try {
-            System.out.println("Project Id:");
+            System.out.println(Constant.ProjectId);
             int projectId = Integer.valueOf(scanner.nextLine());
             Project project = projectDAO.getProject(projectId);
             if (project == null) {
-                System.out.println("Project does not exist!!!");
+                System.out.println(Constant.ProjectNotExist);
                 return true;
             }
-            if (!project.getStatus().equals("closed")) {
+            if (!project.getStatus().equals(Constant.CLOSED)) {
                 System.out.println("Project is not closed yet!!!");
                 return true;
             }
             List<Order> orders = orderDAO.getOrdersByProjectId(projectId);
             if (!doSettlement(orders, project.getEndDate())) {
-                System.out.println("Errors happened!");
+                System.out.println(Constant.Failed);
             }
 
         } catch (Exception ex) {
@@ -62,7 +62,7 @@ public class SettlementPage extends ActionPage {
         HashMap<Integer, Queue<Order>> orderQueueMap = new HashMap<>();
         HashMap<Integer, Double[]> priceMap = new HashMap<>();
         for (Order o : orders) {
-            if (o.getType() == Common.LEASE) {
+            if (o.getType() == Constant.LEASE) {
                 //Queue<Order> q = map.getOrDefault(o.getProductId(), new LinkedList<>());
                 Queue<Order> q;
                 if (orderQueueMap.containsKey(o.getProductId())) {
@@ -163,6 +163,7 @@ public class SettlementPage extends ActionPage {
         TextTable tt = new TextTable(column, data);
         Common.PrintCurrentDateTime();
         System.out.println("Rent = (FirstMonthPrice + Math.max(0, Days - 30) * UnitPrice) * Quantity");
+        System.out.println("* before Product Id means products loss for this project");
         tt.printTable();
         System.out.println(Constant.SingleLine);
     }

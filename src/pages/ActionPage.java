@@ -2,8 +2,6 @@ package pages;
 
 import ui.Constant;
 
-import java.util.Scanner;
-
 public abstract class ActionPage extends Page{
     public ActionPage() {
         super();

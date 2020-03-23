@@ -3,15 +3,14 @@ package pages.products;
 import db.ProductDAO;
 import entity.Product;
 import pages.ActionPage;
-
-import javax.sql.rowset.serial.SerialException;
-import java.io.IOException;
+import pages.helper.Common;
+import ui.Constant;
 import java.sql.SQLException;
 
 public class EditProductPage extends ActionPage {
     public EditProductPage(){
         super();
-        setPageName("Edit Product");
+        setPageName(Constant.EditProduct);
         pd = new ProductDAO();
     }
 
@@ -26,11 +25,11 @@ public class EditProductPage extends ActionPage {
             String input = scanner.nextLine();
             switch (input) {
                 case "1":
-                    System.out.println("Product Id:");
+                    System.out.println(Constant.ProductId);
                     input = scanner.nextLine();
                     product = pd.getProduct(Integer.valueOf(input));
                     if(product==null){
-                        System.out.println("Product does not exist!!!");
+                        System.out.println(Constant.ProductNotExist);
                         return true;
                     }
                     System.out.println("Addition Quantity:");
@@ -38,11 +37,11 @@ public class EditProductPage extends ActionPage {
                     additionInventory(Integer.valueOf(input));
                     break;
                 case "2":
-                    System.out.println("Product Id:");
+                    System.out.println(Constant.ProductId);
                     input = scanner.nextLine();
                     product = pd.getProduct(Integer.valueOf(input));
                     if(product==null){
-                        System.out.println("Product does not exist!!!");
+                        System.out.println(Constant.ProductNotExist);
                         return true;
                     }
                     System.out.println("Deduction Quantity:");

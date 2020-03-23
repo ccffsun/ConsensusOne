@@ -23,11 +23,8 @@ public class Common {
         System.out.println(Constant.ANSI_GREEN+dateFormat.format(date)+Constant.ANSI_RESET);
     }
 
-    public static final int LEASE = 1;
-    public static final int RETURN =2;
 
-    public static final String CLOSED = "closed";
-    public static final String ACTIVE = "active";
+
 
     public static LocalDate convertToLocalDate(Date dateToConvert) {
         return Instant.ofEpochMilli(dateToConvert.getTime())
